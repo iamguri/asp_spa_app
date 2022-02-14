@@ -1,4 +1,4 @@
-name: "API-Build-$(Date:dd:MM:yyyy)-($(Build.SourceBranchName))-$(Rev:r)"
+name: "(API-Build)-($(Rev:r))"
 
 trigger:
 - main

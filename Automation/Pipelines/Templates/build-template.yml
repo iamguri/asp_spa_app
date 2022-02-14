@@ -24,7 +24,7 @@ jobs:
     displayName: "dotnet build"
     inputs:
         command: build
-        arguments: '--configuraion ${{ parameters.config }} PackageLocation="$(Build.ArtifactStagingDirectory)"'
+        arguments: '--configuraion ${{ parameters.solution }} PackageLocation="$(Build.ArtifactStagingDirectory)"'
 
   - task: PublishBuildArtifacts@1
     displayName: spa_app

@@ -6,6 +6,7 @@ jobs:
 - job:
   displayName: Building SPA App
   steps:
+  
   - checkout: self
 
   - task: DotNetCoreCli@2

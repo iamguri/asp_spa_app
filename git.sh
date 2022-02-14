@@ -1,5 +1,5 @@
 git add .
-echo "Enter commit message: " 
+echo "Enter commit message " 
 read commit_message
 git commit -m "$commit_message"
 BRANCH=$(git describe --contains --all HEAD)

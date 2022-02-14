@@ -22,6 +22,7 @@ stages:
           echo Build Stage
 
   - job: Test
+    dependsOn : Build
     steps:
     - task: Bash@3
       displayName: Test
@@ -31,6 +32,9 @@ stages:
          echo Test
 
   - job: Deploy
+    dependsOn: 
+      - Build
+      - Test
     steps:
       - task: Bash@3
         displayName: Deploy

@@ -37,6 +37,17 @@ stages:
         script: |
          echo Test
 
+  - job: Infrastructure
+    dependsOn: 
+      - Build
+    steps: 
+      - task: Bash@3
+        displayName: "Infra Provisioning"
+        inputs:
+          targetType: inline
+          script: |
+            echo "Infra stage"
+            
   - job: Deploy
     dependsOn: 
       - Build

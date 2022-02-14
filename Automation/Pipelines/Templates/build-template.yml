@@ -22,9 +22,10 @@ jobs:
 
   - task: DotNetCoreCli@2
     displayName: "dotnet build"
-    inputs:
+    inputs: 
+        projects: "${{ parameters.solution }}"
         command: build
-        arguments: '--configuraion ${{ parameters.solution }} PackageLocation="$(Build.ArtifactStagingDirectory)"'
+        arguments: '--configuraion ${{ parameters.config }} PackageLocation="$(Build.ArtifactStagingDirectory)"'
 
   - task: PublishBuildArtifacts@1
     displayName: spa_app

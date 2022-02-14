@@ -15,18 +15,18 @@ jobs:
         command: restore
         projects: "${{ parameters.solution }}"
 
-  # - task: DotNetCoreCli@2
-  #   displayName: "dotnet build"
-  #   inputs: 
-  #       projects: "${{ parameters.solution }}"
-  #       command: build
-  #       zipAfterPublish: true
-  #       arguments: '--configuration ${{ parameters.config }} --output "$(Build.ArtifactStagingDirectory)/$(Build.BuildId)"'
+  - task: DotNetCoreCli@2
+    displayName: "dotnet build"
+    inputs: 
+        projects: "${{ parameters.solution }}"
+        command: build
+        zipAfterPublish: true
+        arguments: '--configuration ${{ parameters.config }} --output "$(Build.ArtifactStagingDirectory)/$(Build.BuildId)"'
 
-  - task: MSBuild@1
-    inputs:
-      solution: "${{ parameters.solution }}"
-      msbuildArguments: '-p: PackageLocation="$(Build.ArtifactStagingDirectory)/$(Build.BuildId)"; DeployOnBuild=true; PackageAsSingleFile=true'
+  # - task: MSBuild@1
+  #   inputs:
+  #     solution: "${{ parameters.solution }}"
+  #     msbuildArguments: '-p: PackageLocation="$(Build.ArtifactStagingDirectory)/$(Build.BuildId)"; DeployOnBuild=true; PackageAsSingleFile=true'
 
   - task: PublishBuildArtifacts@1
     displayName: spa_app

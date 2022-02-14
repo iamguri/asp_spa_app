@@ -1,15 +1,16 @@
 name: "(API-Build)-$(Date:dd:MM:yyyy)-($(Rev:r))"
 
 resources:
-  - repository: asp_spa
-    type: github
-    name: iamguri/asp_spa_app
-    trigger:
-      branches:
-        include:
-          - main
-          - develop
-          - feature
+  repositories:
+    - repository: asp_spa
+      type: github
+      name: iamguri/asp_spa_app
+      trigger:
+        branches:
+          include:
+            - main
+            - develop
+            - feature
 
 
 trigger:

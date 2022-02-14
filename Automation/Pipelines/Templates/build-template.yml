@@ -8,11 +8,11 @@ jobs:
   steps:
   - checkout: self
   
-#   - task: UseDotNet@2
-#     displayName: ".Net Core 5.0.x"
-#     inputs:
-#         packageType: sdk
-#         version: "5.0.x"
+  - task: UseDotNet@2
+    displayName: ".Net Core 5.0.x"
+    inputs:
+        packageType: sdk
+        version: "5.0.x"
 
   - task: DotNetCoreCli@2
     displayName: "dotnet restore"

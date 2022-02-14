@@ -13,13 +13,7 @@ resources:
             - develop
             - feature
 
-
-trigger:
-- main
-
 pool: Self-hosted
-
-
 
 stages:
 - stage: Build

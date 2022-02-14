@@ -1,4 +1,4 @@
-name: "(NET SPA-Build)-($(Date:dd:mm:yyy))-($(Build.SourceBranchName))-($(Rev:R))"
+name: "(API-Build)-($(Date:dd:mm:yyy))-($(Build.SourceBranchName))-($(Rev:r))"
 
 trigger:
 - main

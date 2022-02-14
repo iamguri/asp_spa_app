@@ -17,6 +17,7 @@ pool: Self-hosted
 
 stages:
 - stage: Build_App
+  displayName: Build_App
   variables:
     system.debug: true
     solutionFile: ./dotnet.csproj
@@ -29,8 +30,9 @@ stages:
       solutionFile: $(solution)
       config: $(config)
 
-- stage: Test
-  dependsOn : Build
+- stage: Test_App
+  dependsOn : Build_App
+  displayName: Test_App
   jobs:
   - job: Test
     steps:
@@ -43,8 +45,8 @@ stages:
 
 - stage: Infra_provisioning
   dependsOn: 
-    - Build
-    - Test
+    - Build_App
+    - Test_App
   jobs:
   - job: Infrastructure
     steps: 

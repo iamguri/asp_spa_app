@@ -1,0 +1,33 @@
+parameters:
+    solution: ""
+    config: ""
+
+jobs:
+- job:
+  displayName: Building SPA App
+  steps:
+  - checkout: self
+  
+#   - task: UseDotNet@2
+#     displayName: ".Net Core 5.0.x"
+#     inputs:
+#         packageType: sdk
+#         version: "5.0.x"
+
+  - task: DotNetCoreCli@2
+    displayName: "dotnet restore"
+    inputs:
+        command: restore
+        projects: "${{ parameters.solution }}"
+
+  - task: DotNetCoreCli@2
+    displayName: "dotnet build"
+    inputs:
+        command: build
+        arguments: '--configuraion ${{ parameters.config }} PackageLocation="$(Build.ArtifactStagingDirectory)"'
+
+  - task: PublishBuildArtifacts@1
+    displayName: spa_app
+    inputs:
+        PathToPublish: $(Build.ArtifactStagingDirectory)
+        ArtifactName: spa_app

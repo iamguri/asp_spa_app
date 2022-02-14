@@ -1,4 +1,4 @@
-name: "(API-Build)-$(Date:dd.MM.yyyy)-($(Rev:r))"
+name: "(API-Build)-($(Date:dd.MM.yyyy))-($(Rev:r))"
 
 resources:
   repositories:
@@ -16,19 +16,23 @@ resources:
 pool: Self-hosted
 
 stages:
-- stage: Build
-  jobs: 
-  - job: Build
-    steps:
-    - task: Bash@3
-      displayName: Build
-      inputs:
-        targetType: inline
-        script: |
-          echo Build Stage
+- stage: Build_App
+  variables:
+    system.debug: true
+    solutionFile: ./dotnet.csproj
+    config: "Release"
+    BuildPlatform: "Any CPU"
 
+  jobs:
+  - template: ./Templates/build-template.yml
+    parameters:
+      solutionFile: $(solution)
+      config: $(config)
+
+- stage: Test
+  dependsOn : Build
+  jobs:
   - job: Test
-    dependsOn : Build
     steps:
     - task: Bash@3
       displayName: Test
@@ -37,9 +41,12 @@ stages:
         script: |
          echo Test
 
+- stage: Infra_provisioning
+  dependsOn: 
+    - Build
+    - Test
+  jobs:
   - job: Infrastructure
-    dependsOn: 
-      - Build
     steps: 
       - task: Bash@3
         displayName: "Infra Provisioning"
@@ -47,15 +54,3 @@ stages:
           targetType: inline
           script: |
             echo "Infra stage"
-            
-  - job: Deploy
-    dependsOn: 
-      - Build
-      - Test
-    steps:
-      - task: Bash@3
-        displayName: Deploy
-        inputs:
-          targetType: inline
-          script: |
-            echo Deploy

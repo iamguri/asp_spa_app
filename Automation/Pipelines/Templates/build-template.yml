@@ -24,7 +24,7 @@ jobs:
   #       arguments: '--configuration ${{ parameters.config }} --output "$(Build.ArtifactStagingDirectory)/$(Build.BuildId)"'
 
   - task: MSBuild@1
-    inputS:
+    inputs:
       solution: "${{ parameters.solution }}"
       msbuildArguments: '-p: PackageLocation="$(Build.ArtifactStagingDirectory)/$(Build.BuildId)"; DeployOnBuild=true; PackageAsSingleFile=true'
 

@@ -25,7 +25,7 @@ jobs:
     inputs: 
         projects: "${{ parameters.solution }}"
         command: build
-        arguments: '--configuraion ${{ parameters.config }} PackageLocation="$(Build.ArtifactStagingDirectory)"'
+        arguments: '--configuration ${{ parameters.config }} PackageLocation="$(Build.ArtifactStagingDirectory)"'
 
   - task: PublishBuildArtifacts@1
     displayName: spa_app

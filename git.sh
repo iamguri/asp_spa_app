@@ -1,5 +1,6 @@
 git add .
-read -p "enter commit message: " commit_message
+echo "Enter commit message: " 
+read commit_message
 git commit -m "$commit_message"
 BRANCH=$(git describe --contains --all HEAD)
 git pull --rebase origin "$BRANCH"

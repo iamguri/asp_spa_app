@@ -23,7 +23,6 @@ stages:
     solutionFile: ./dotnet.csproj
     config: "Release"
     BuildPlatform: "Any CPU"
-
   jobs:
   - template: ./Templates/build-template.yml
     parameters:

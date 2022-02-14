@@ -5,6 +5,7 @@ resources:
     - repository: asp_spa
       type: github
       name: iamguri/asp_spa_app
+      endpoint: iamguri
       trigger:
         branches:
           include:

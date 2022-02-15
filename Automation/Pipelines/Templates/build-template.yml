@@ -14,20 +14,28 @@ jobs:
     inputs:
       packageType: 'sdk'
       version: "6.0.x"
+  
+  - task: NuGetInstaller@1
+    displayName: "install nuget"
 
-  - task: DotNetCoreCli@2
-    displayName: "dotnet restore"
+  - task: NuGetCommand@2
+    displayName: "nuget restore"
     inputs:
-        command: restore
-        projects: "${{ parameters.solution }}"
+      restoreSolution: ${{ parameters.solution }}
 
-  - task: DotNetCoreCli@2
-    displayName: "dotnet build"
-    inputs: 
-        projects: "${{ parameters.solution }}"
-        command: build
-        zipAfterPublish: true
-        arguments: '--configuration ${{ parameters.config }} --output "$(Build.ArtifactStagingDirectory)/$(Build.BuildId)"'
+  # - task: DotNetCoreCli@2
+  #   displayName: "dotnet restore"
+  #   inputs:
+  #       command: restore
+  #       projects: "${{ parameters.solution }}"
+
+  # - task: DotNetCoreCli@2
+  #   displayName: "dotnet build"
+  #   inputs: 
+  #       projects: "${{ parameters.solution }}"
+  #       command: build
+  #       zipAfterPublish: true
+  #       arguments: '--configuration ${{ parameters.config }} --output "$(Build.ArtifactStagingDirectory)/$(Build.BuildId)"'
 
   # - task: DotNetCoreCli@2
   #   displayName: "dotnet test"

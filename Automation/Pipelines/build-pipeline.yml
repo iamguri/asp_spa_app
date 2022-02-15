@@ -13,7 +13,8 @@ resources:
             - develop
             - feature
 
-pool: Self-hosted
+pool:
+  vmImage: ubuntu-latest
 
 stages:
 - stage: Build_App

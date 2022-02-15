@@ -18,16 +18,16 @@ jobs:
   - task: NuGetToolInstaller@1
     displayName: "install nuget"
 
-  - task: NuGetCommand@2
-    displayName: "nuget restore"
-    inputs:
-      restoreSolution: ${{ parameters.solution }}
-
-  # - task: DotNetCoreCli@2
-  #   displayName: "dotnet restore"
+  # - task: NuGetCommand@2
+  #   displayName: "nuget restore"
   #   inputs:
-  #       command: restore
-  #       projects: "${{ parameters.solution }}"
+  #     restoreSolution: ${{ parameters.solution }}
+
+  - task: DotNetCoreCli@2
+    displayName: "dotnet restore"
+    inputs:
+        command: restore
+        projects: "${{ parameters.solution }}"
 
   # - task: DotNetCoreCli@2
   #   displayName: "dotnet build"

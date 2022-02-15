@@ -33,7 +33,7 @@ jobs:
   - task: MSBuild@1
     inputs:
       solution: "${{ parameters.solution }}"
-      msbuildArguments: '-p: PackageLocation="$(Build.ArtifactStagingDirectory)/$(Build.BuildId)"; DeployOnBuild=true; PackageAsSingleFile=true'
+      msbuildArguments: '-p:PackageLocation="$(Build.ArtifactStagingDirectory)/$(Build.BuildId)";DeployOnBuild=true;PackageAsSingleFile=true'
 
   - task: PublishBuildArtifacts@1
     displayName: spa_app

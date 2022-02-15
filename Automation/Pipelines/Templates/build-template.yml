@@ -23,17 +23,17 @@ jobs:
         zipAfterPublish: true
         arguments: '--configuration ${{ parameters.config }} --output "$(Build.ArtifactStagingDirectory)/$(Build.BuildId)"'
 
-  - task: DotNetCoreCli@2
-    displayName: "dotnet test"
-    inputs:
-      command: test
-      projects: "${{ parameters.solution }}"
-      arguments: '--configuration ${{ parameters.config }}'
-
-  # - task: MSBuild@1
+  # - task: DotNetCoreCli@2
+  #   displayName: "dotnet test"
   #   inputs:
-  #     solution: "${{ parameters.solution }}"
-  #     msbuildArguments: '-p: PackageLocation="$(Build.ArtifactStagingDirectory)/$(Build.BuildId)"; DeployOnBuild=true; PackageAsSingleFile=true'
+  #     command: test
+  #     projects: "${{ parameters.solution }}"
+  #     arguments: '--configuration ${{ parameters.config }}'
+
+  - task: MSBuild@1
+    inputs:
+      solution: "${{ parameters.solution }}"
+      msbuildArguments: '-p: PackageLocation="$(Build.ArtifactStagingDirectory)/$(Build.BuildId)"; DeployOnBuild=true; PackageAsSingleFile=true'
 
   - task: PublishBuildArtifacts@1
     displayName: spa_app

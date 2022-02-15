@@ -9,6 +9,12 @@ jobs:
 
   - checkout: self
 
+  - task: UseDotNet@2
+    displayName: "dotnet 6.0.x"
+    inputs:
+      packageType: 'sdk'
+      version: "6.0.x"
+
   - task: DotNetCoreCli@2
     displayName: "dotnet restore"
     inputs:
